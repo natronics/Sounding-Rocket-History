@@ -6,3 +6,6 @@ title: data
 h1. Data for 1971
 
  * 1971-01-19T19:40:47, Astrobe D, Wallops Flight Facility
+
+{% include datetest.html %}
+

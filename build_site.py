@@ -26,4 +26,7 @@ title: data
 h1. Data for %d
 
  * %s, %s, %s
+
+{%% include datetest.html %%}
+
 """  % (flight['date'].year, flight['date'].isoformat(), flight['vehicle'], flight['location']))
