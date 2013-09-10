@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 from dateutil import parser
+from copy import deepcopy
+import json
 
 flights = {'all': [], 'year': {}, 'lv': {}, 'loc': {}}
 
@@ -32,9 +34,11 @@ with open('rawdata/sounding-rocket-history.csv', 'r') as f_in:
 for key, name in {'year': "year", 'lv': "launch-vehicle", 'loc': "location"}.iteritems():
 
     for slicekey, launches in flights[key].iteritems():
+
+        # Textile for jekyll pages
         filename = '{setkey}/_posts/2013-01-01-{slice}.textile'.format(setkey=name, slice=slicekey.replace(' ','-'))
         if key == 'year':
-            filename = '{setkey}/_posts/{slice}-12-31-{slice}.textile'.format(setkey=key, slice=slicekey)
+            filename = '{setkey}/_posts/{slice}-12-31-{slice}.textile'.format(setkey=name, slice=slicekey)
         with open(filename, 'w') as post:
             post.write("""---
 layout: base
@@ -51,3 +55,15 @@ table(table).
                 post.write("|{date}|{lv}|{loc}|\n".format(date=launch['date'], lv=launch['vehicle'], loc=launch['location']))
 
             post.write("\n")
+
+        # Raw data
+        filename = 'data/{setkey}/{slice}.json'.format(setkey=name, slice=slicekey.replace(' ','-'))
+
+        l = []
+        for launch in launches:
+            tmp = deepcopy(launch)
+            tmp['date'] = tmp['date'].isoformat()
+            l.append(tmp)
+
+        with open(filename, 'w') as data:
+            data.write(json.dumps({'launches': l}))
