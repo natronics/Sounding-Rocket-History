@@ -7,6 +7,6 @@ h1. Astrobe D Launches
 
 table(table).
 |.Launch Date|.Launch Vehicle|.Location|
-|1971-01-19 19:40:47|Astrobe D|Wallops Flight Facility|
-|1974-10-10 16:33:35|Astrobe D|White Sands Missile Range|
+|1971-01-19 19:40:47|"Astrobe D":../Astrobe-D|Wallops Flight Facility|
+|1974-10-10 16:33:35|"Astrobe D":../Astrobe-D|White Sands Missile Range|
 

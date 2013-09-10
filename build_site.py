@@ -52,7 +52,9 @@ table(table).
 """.format(slice=slicekey))
 
             for launch in launches:
-                post.write("|{date}|{lv}|{loc}|\n".format(date=launch['date'], lv=launch['vehicle'], loc=launch['location']))
+                lvlink = '../' + launch['vehicle'].replace(' ','-')
+                print lvlink
+                post.write('|{date}|"{lv}":{lvlink}|{loc}|\n'.format(date=launch['date'], lv=launch['vehicle'], lvlink=lvlink, loc=launch['location']))
 
             post.write("\n")
 
