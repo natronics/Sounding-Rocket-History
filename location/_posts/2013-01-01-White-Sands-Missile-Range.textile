@@ -9,4 +9,5 @@ h1. White Sands Missile Range Launches
 table(table).
 |.Launch Date|.Launch Vehicle|.Location|
 |1974-10-10 16:33:35|"Astrobe D":../Astrobe-D|White Sands Missile Range|
+{% include launchchart.html %}
 

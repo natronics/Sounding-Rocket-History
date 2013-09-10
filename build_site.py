@@ -64,7 +64,7 @@ table(table).
 
                 post.write(line.format(date=launch['date']))
 
-            post.write("\n")
+            post.write("{% include launchchart.html %}\n\n")
 
         # Raw data
         filename = 'data/{setkey}/{slice}.json'.format(setkey=name, slice=slicekey.replace(' ','-'))
