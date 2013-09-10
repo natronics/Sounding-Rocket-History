@@ -7,5 +7,5 @@ h1. 1974 Launches
 
 table(table).
 |.Launch Date|.Launch Vehicle|.Location|
-|1974-10-10 16:33:35|"Astrobe D":../Astrobe-D|White Sands Missile Range|
+|1974-10-10 16:33:35|"Astrobe D":../Astrobe-D|"White Sands Missile Range":../White-Sands-Missile-Range|
 
