@@ -7,22 +7,32 @@ title: Sounding Rocket History
 
 For now, this doesn't exist. Sorry.
 
-Data by Year:
+Launches by Year:
+
+---
 
 <ul>
 {% for post in site.categories.year %}
-  <li><a href="{{ relative }}{{ post.url }}">{{ post.title }}</a></li>
+  <li><a href="{{ post.url | remove_first:'/'}}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 
 ---
 
-Data by LV:
+Launches by Vehicle:
 
 <ul>
 {% for post in site.categories.launch-vehicle %}
-  <li><a href="{{ relative }}{{ post.url }}">{{ post.title }}</a></li>
+  <li><a href="{{ post.url | remove_first:'/'}}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 
+---
 
+Launches by Location:
+
+<ul>
+{% for post in site.categories.location %}
+  <li><a href="{{ post.url | remove_first:'/'}}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
