@@ -1,6 +1,7 @@
 ---
 layout: base
 title: 1974
+tags: [1]
 ---
 
 h1. 1974 Launches

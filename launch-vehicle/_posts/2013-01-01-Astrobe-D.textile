@@ -1,6 +1,7 @@
 ---
 layout: base
 title: Astrobe D
+tags: [2]
 ---
 
 h1. Astrobe D Launches

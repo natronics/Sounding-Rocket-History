@@ -43,13 +43,14 @@ for key, name in {'year': "year", 'lv': "launch-vehicle", 'loc': "location"}.ite
             post.write("""---
 layout: base
 title: {slice}
+tags: [{launches}]
 ---
 
 h1. {slice} Launches
 
 table(table).
 |.Launch Date|.Launch Vehicle|.Location|
-""".format(slice=slicekey))
+""".format(slice=slicekey, launches=len(launches)))
 
             for launch in launches:
                 lvlink = launch['vehicle']

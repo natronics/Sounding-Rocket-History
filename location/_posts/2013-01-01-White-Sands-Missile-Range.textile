@@ -1,6 +1,7 @@
 ---
 layout: base
 title: White Sands Missile Range
+tags: [1]
 ---
 
 h1. White Sands Missile Range Launches
