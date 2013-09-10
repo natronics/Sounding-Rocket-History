@@ -1,0 +1,10 @@
+---
+layout: base
+title: 1974
+---
+
+h1. Data for 1974
+
+table(table).
+|.Launch Date|.Launch Vehicle|.Location|
+|1974-10-10 16:33:35|Astrobe D|White Sands Missile Range|

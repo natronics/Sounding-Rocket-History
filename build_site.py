@@ -2,7 +2,7 @@
 
 from dateutil import parser
 
-all_flights = []
+flights = {'all': [], 'year': {}, 'lv': {}, 'loc': {}}
 
 
 with open('rawdata/sounding-rocket-history.csv', 'r') as f_in:
@@ -13,35 +13,48 @@ with open('rawdata/sounding-rocket-history.csv', 'r') as f_in:
             vehicle  =               li[1].strip()
             location =               li[2].strip()
 
-            all_flights.append({'date': date, 'vehicle': vehicle, 'location': location})
+            year = str(date.year)
+
+            launch = {'date': date, 'vehicle': vehicle, 'location': location}
+
+            flights['all'].append(launch)
+            if year not in flights['year']:
+                flights['year'][year] = []
+            flights['year'][year].append(launch)
+            if vehicle not in flights['lv']:
+                flights['lv'][vehicle] = []
+            flights['lv'][vehicle].append(launch)
 
 
-for flight in all_flights:
-    with open('_posts/%d-12-31-%d.textile' % (flight['date'].year, flight['date'].year), 'w') as post:
+# Chunk out by year
+for year, launches in flights['year'].iteritems():
+    with open('year/_posts/{year}-12-31-{year}.textile'.format(year=year), 'w') as post:
         post.write("""---
 layout: base
-title: Data by year
+title: {year}
 ---
 
-h1. Data for %d
+h1. Data for {year}
 
- * %s, %s, %s
+table(table).
+|.Launch Date|.Launch Vehicle|.Location|
+""".format(year=year))
+        for launch in launches:
+            post.write("|{date}|{lv}|{loc}|".format(date=launch['date'], lv=launch['vehicle'], loc=launch['location']))
 
-{%% include datetest.html %%}
 
-"""  % (flight['date'].year, flight['date'].isoformat(), flight['vehicle'], flight['location']))
-
-    with open('launch-vehicle/_posts/2013-01-01-%s.textile' % flight['vehicle'].replace(' ','-'), 'w') as post:
+# Chunk out by lv
+for lv, launches in flights['lv'].iteritems():
+    with open('launch-vehicle/_posts/2013-01-01-{lv}.textile'.format(lv=lv.replace(' ','-')), 'w') as post:
         post.write("""---
 layout: base
-title: Data for %s
+title: {lv}
 ---
 
-h1. Data for %s
+h1. Data for {lv}
 
- * %s, %s, %s
-
-{%% include datetest.html %%}
-
-"""  % (flight['vehicle'], flight['vehicle'], flight['date'].isoformat(), flight['vehicle'], flight['location']))
-
+table(table).
+|.Launch Date|.Launch Vehicle|.Location|
+""".format(lv=lv))
+        for launch in launches:
+            post.write("|{date}|{lv}|{loc}|\n".format(date=launch['date'], lv=launch['vehicle'], loc=launch['location']))

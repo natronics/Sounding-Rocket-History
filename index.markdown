@@ -10,8 +10,8 @@ For now, this doesn't exist. Sorry.
 Data by Year:
 
 <ul>
-{% for post in site.posts %}
-  <li><a href="{{ relative }}{{ post.url }}">{{ post.date | date: "%Y" }}</a></li>
+{% for post in site.categories.year %}
+  <li><a href="{{ relative }}{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 
