@@ -1,0 +1,11 @@
+---
+layout: base
+title: Wallops Flight Facility
+---
+
+h1. Wallops Flight Facility Launches
+
+table(table).
+|.Launch Date|.Launch Vehicle|.Location|
+|1971-01-19 19:40:47|Astrobe D|Wallops Flight Facility|
+

@@ -24,6 +24,9 @@ with open('rawdata/sounding-rocket-history.csv', 'r') as f_in:
             if vehicle not in flights['lv']:
                 flights['lv'][vehicle] = []
             flights['lv'][vehicle].append(launch)
+            if location not in flights['loc']:
+                flights['loc'][location] = []
+            flights['loc'][location].append(launch)
 
 
 for key, name in {'year': "year", 'lv': "launch-vehicle", 'loc': "location"}.iteritems():
