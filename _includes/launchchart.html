@@ -1,2 +1,10 @@
 <br>
 <a href="../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json">raw data</a>
+<hr>
+<div id="chart">
+</div>
+<script>
+    $.getJSON("../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json", function(data) {
+        console.log(data);
+    });
+</script>
