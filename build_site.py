@@ -20,7 +20,7 @@ for flight in all_flights:
     with open('_posts/%d-12-31-%d.textile' % (flight['date'].year, flight['date'].year), 'w') as post:
         post.write("""---
 layout: base
-title: data
+title: Data by year
 ---
 
 h1. Data for %d
@@ -30,3 +30,18 @@ h1. Data for %d
 {%% include datetest.html %%}
 
 """  % (flight['date'].year, flight['date'].isoformat(), flight['vehicle'], flight['location']))
+
+    with open('launch-vehicle/_posts/2013-01-01-%s.textile' % flight['vehicle'].replace(' ','-'), 'w') as post:
+        post.write("""---
+layout: base
+title: Data for %s
+---
+
+h1. Data for %s
+
+ * %s, %s, %s
+
+{%% include datetest.html %%}
+
+"""  % (flight['vehicle'], flight['vehicle'], flight['date'].isoformat(), flight['vehicle'], flight['location']))
+

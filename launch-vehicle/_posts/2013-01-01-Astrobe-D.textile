@@ -1,9 +1,9 @@
 ---
 layout: base
-title: Data by year
+title: Data for Astrobe D
 ---
 
-h1. Data for 1974
+h1. Data for Astrobe D
 
  * 1974-10-10T16:33:35, Astrobe D, White Sands Missile Range
 

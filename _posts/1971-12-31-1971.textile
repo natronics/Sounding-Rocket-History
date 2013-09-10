@@ -1,6 +1,6 @@
 ---
 layout: base
-title: data
+title: Data by year
 ---
 
 h1. Data for 1971
