@@ -17,7 +17,7 @@ with open('rawdata/sounding-rocket-history.csv', 'r') as f_in:
 
 
 for flight in all_flights:
-    with open('_posts/%d-12-31-00-00-00-Data.textile' % flight['date'].year, 'w') as post:
+    with open('_posts/%d-12-31-%d.textile' % (flight['date'].year, flight['date'].year), 'w') as post:
         post.write("""---
 layout: base
 title: data

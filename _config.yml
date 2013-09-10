@@ -1,0 +1,2 @@
+exclude: [README.md,rawdata,build_site.py]
+permalink: /:title/
