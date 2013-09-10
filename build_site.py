@@ -26,35 +26,25 @@ with open('rawdata/sounding-rocket-history.csv', 'r') as f_in:
             flights['lv'][vehicle].append(launch)
 
 
-# Chunk out by year
-for year, launches in flights['year'].iteritems():
-    with open('year/_posts/{year}-12-31-{year}.textile'.format(year=year), 'w') as post:
-        post.write("""---
+for key, name in {'year': "year", 'lv': "launch-vehicle", 'loc': "location"}.iteritems():
+
+    for slicekey, launches in flights[key].iteritems():
+        filename = '{setkey}/_posts/2013-01-01-{slice}.textile'.format(setkey=name, slice=slicekey.replace(' ','-'))
+        if key == 'year':
+            filename = '{setkey}/_posts/{slice}-12-31-{slice}.textile'.format(setkey=key, slice=slicekey)
+        with open(filename, 'w') as post:
+            post.write("""---
 layout: base
-title: {year}
+title: {slice}
 ---
 
-h1. Data for {year}
+h1. {slice} Launches
 
 table(table).
 |.Launch Date|.Launch Vehicle|.Location|
-""".format(year=year))
-        for launch in launches:
-            post.write("|{date}|{lv}|{loc}|".format(date=launch['date'], lv=launch['vehicle'], loc=launch['location']))
+""".format(slice=slicekey))
 
+            for launch in launches:
+                post.write("|{date}|{lv}|{loc}|\n".format(date=launch['date'], lv=launch['vehicle'], loc=launch['location']))
 
-# Chunk out by lv
-for lv, launches in flights['lv'].iteritems():
-    with open('launch-vehicle/_posts/2013-01-01-{lv}.textile'.format(lv=lv.replace(' ','-')), 'w') as post:
-        post.write("""---
-layout: base
-title: {lv}
----
-
-h1. Data for {lv}
-
-table(table).
-|.Launch Date|.Launch Vehicle|.Location|
-""".format(lv=lv))
-        for launch in launches:
-            post.write("|{date}|{lv}|{loc}|\n".format(date=launch['date'], lv=launch['vehicle'], loc=launch['location']))
+            post.write("\n")

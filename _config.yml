@@ -1,2 +1,2 @@
-exclude: [README.md,rawdata,build_site.py]
+exclude: [README.md,rawdata,build_site.py,Makefile]
 permalink: /:title/
