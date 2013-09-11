@@ -1,0 +1,13 @@
+---
+layout: base
+title: 1961
+tags: [1]
+---
+
+h1. 1961 Launches
+
+table(table).
+|.Launch Date|.Launch Vehicle|.Location|
+|1961-05-19 18:03:00|"Aerobee 100":../Aerobee-100|"Fort Churchill":../Fort-Churchill|
+{% include launchchart.html %}
+

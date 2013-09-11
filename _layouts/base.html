@@ -7,7 +7,7 @@
   <meta name="author" content="{{ name }}">
   {% capture lvl %}{{ page.url | append:'index.html' | split:'/' | size }}{% endcapture %}
   {% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
-  <!--<link href='http://fonts.googleapis.com/css?family=Arvo:400,700|PT+Sans:400,700,400italic' rel='stylesheet' type='text/css'>-->
+  <link href='http://fonts.googleapis.com/css?family=Arvo:400,700|PT+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
   <link href="{{ relative }}resources/css/bootstrap.min.css" rel="stylesheet">
   <link href="{{ relative }}resources/css/style.css" rel="stylesheet">
   <script src="{{ relative }}resources/js/jquery-2.0.3.min.js">
@@ -20,7 +20,7 @@
   <div class="wrapper">
    <div id="header">
     <div class="container">
-     <h1>Sounding Rocket History</h1>
+     <h1><a href="{{ relative }}">Sounding Rocket History</a></h1>
     </div>
    </div>
    <div id="content">
