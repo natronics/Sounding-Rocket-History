@@ -36,3 +36,6 @@ nosetests.xml
 
 #jekyll
 _site/
+
+# NTRS sandbox
+research/
