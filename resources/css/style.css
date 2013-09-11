@@ -1,0 +1,20 @@
+
+/* Charts */
+.chart rect {
+    fill: #fc84dd;
+}
+
+.chart .domain {
+    shape-rendering: crispEdges;
+    fill: none;
+    stroke: #999;
+    stroke-width: 1;
+}
+
+.chart .tick line {
+    shape-rendering: crispEdges;
+    fill: none;
+    stroke: #999;
+    stroke-width: 1;
+
+}

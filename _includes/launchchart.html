@@ -1,10 +1,62 @@
 <br>
 <a href="../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json">raw data</a>
 <hr>
-<div id="chart">
+<div id="barchart" class="chart">
 </div>
 <script>
+    var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = 800 - margin.left - margin.right,
+        height = 250 - margin.top - margin.bottom;
+
+    var x = d3.scale.ordinal()
+        .rangeRoundBands([0, width], .1);
+
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .tickFormat(d3.time.format("%Y"));
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+
+    var tformat = d3.time.format("%Y-%m-%dT%H:%M:%S");
+
+    var svg = d3.select("#barchart").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
     $.getJSON("../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json", function(data) {
-        console.log(data);
+        var times = Array();
+        $.each(data['launches'], function(i, launch) {
+            times.push(tformat.parse(launch['date']));
+        });
+
+
+        x.domain([d3.min(times), d3.max(times)]);
+        y.domain([0, 1]);
+
+        svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
+
+        svg.selectAll(".bar")
+          .data(times)
+        .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", function(d) { return x(d); })
+          .attr("width", x.rangeBand())
+          .attr("y", function(d) { return 0.8; })
+          .attr("height", function(d) { return height - 0.8; });
+        
+        
+        console.log(times);
     });
 </script>
