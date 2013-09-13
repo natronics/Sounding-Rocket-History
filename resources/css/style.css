@@ -15,6 +15,10 @@ body > .wrapper { height: auto; min-height: 100%; }
     text-decoration: none;
 }
 
+.table tbody>tr>th, .table tbody>tr>td {
+    border-top: 1px dashed #f7f7f7;
+}
+
 /* Charts */
 .chart rect {
     fill: #fc84dd;
