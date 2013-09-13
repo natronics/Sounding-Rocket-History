@@ -25,9 +25,14 @@ body > .wrapper { height: auto; min-height: 100%; }
 }
 
 /* Charts */
-.chart rect {
+.chart .this .bar {
     fill: #fc84dd;
 }
+
+.chart .all .bar {
+    fill: #eee;
+}
+
 
 .chart .domain {
     shape-rendering: crispEdges;

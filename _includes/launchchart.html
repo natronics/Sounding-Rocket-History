@@ -4,15 +4,19 @@
     var first_year = 1959;
     var years = 20;
 
+    var all_bins = d3.range(years);
+    all_bins.forEach(function (i) { all_bins[i] = 0; });
     var bins = d3.range(years);
     bins.forEach(function (i) { bins[i] = 0; });
+
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = $('#barchart').width() - 25 - margin.left - margin.right,
         height = 250 - margin.top - margin.bottom;
 
     var x = d3.scale.ordinal()
-        .rangeRoundBands([0, width], .1);
+        .rangeRoundBands([0, width], .1)
+        .domain(all_bins.map(function (d, i) { return first_year+i; }));
 
     var y = d3.scale.linear()
         .range([height, 0]);
@@ -34,15 +38,21 @@
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
+    $.getJSON("../data/sounding-rockets.json", function (data) {
+
+        $.each(data['launches'], function(i, launch) {
+            var n = tformat.parse(launch['date']).getFullYear() - first_year;
+            all_bins[n] += 1;
+        });
+        y.domain([0, d3.max(all_bins)]);
+    });
+
     $.getJSON("../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json", function(data) {
 
         $.each(data['launches'], function(i, launch) {
             var n = tformat.parse(launch['date']).getFullYear() - first_year;
             bins[n] += 1;
         });
-
-        x.domain(bins.map(function (d, i) { return first_year+i; }));
-        y.domain([0, 5]);
 
         svg.append("g")
           .attr("class", "x axis")
@@ -56,7 +66,17 @@
                     return "rotate(45)" 
                 });
 
-        svg.selectAll(".bar")
+        svg.append("g").attr("class", "all").selectAll(".bar")
+          .data(all_bins)
+        .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", function(d, i) { return x(first_year+i); })
+          .attr("width", x.rangeBand())
+          .attr("y", function(d, i ) { return y(d); })
+          .attr("height", function(d, i) { return height - y(d); });
+
+
+        svg.append("g").attr("class", "this").selectAll(".bar")
           .data(bins)
         .enter().append("rect")
           .attr("class", "bar")
