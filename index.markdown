@@ -20,7 +20,7 @@ Many thousands of sounding rockets have been launched.
 #### Launches by Year:
 <ul>
 {% for post in site.categories.year %}
-  <li><a href="{{ post.url | remove_first:'/'}}">{{ post.title }} <span class="num">({{ post.tags }} launches)</span></a></li>
+  <li><a href="{{ post.url | remove_first:'/'}}">{{ post.title }}</a> <span class="num">({{ post.tags }} launches)</span></li>
 {% endfor %}
 </ul>
 
@@ -30,7 +30,7 @@ Many thousands of sounding rockets have been launched.
 
 <ul>
 {% for post in site.categories.launch-vehicle %}
-  <li><a href="{{ post.url | remove_first:'/'}}">{{ post.title }} <span class="num">({{ post.tags }} launches)</span></a></li>
+  <li><a href="{{ post.url | remove_first:'/'}}">{{ post.title }}</a> <span class="num">({{ post.tags }} launches)</span></li>
 {% endfor %}
 </ul>
 
@@ -40,6 +40,6 @@ Many thousands of sounding rockets have been launched.
 
 <ul>
 {% for post in site.categories.location %}
-  <li><a href="{{ post.url | remove_first:'/'}}">{{ post.title }} <span class="num">({{ post.tags }} launches)</span></a></li>
+  <li><a href="{{ post.url | remove_first:'/'}}">{{ post.title }}</a> <span class="num">({{ post.tags }} launches)</span></li>
 {% endfor %}
 </ul>
