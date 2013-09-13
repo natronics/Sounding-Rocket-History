@@ -6,9 +6,18 @@ tags: [2]
 
 h1. White Sands Missile Range Launches
 
+h2. Over Time:
+
+{% include launchchart.html %}
+
+<hr>
+
+h2. Table:
+
 table(table).
 |.Launch Date|.Launch Vehicle|.Location|
 |1962-09-06 00:00:00|"Aerobee 100":../Aerobee-100|White Sands Missile Range|
 |1974-10-10 16:33:35|"Astrobe D":../Astrobe-D|White Sands Missile Range|
-{% include launchchart.html %}
+
+Download raw data: <a href="../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json">{{ page.id | remove_first:'/'}}.json</a>
 

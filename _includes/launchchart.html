@@ -1,12 +1,14 @@
-<br>
-<a href="../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json">raw data</a>
-<hr>
 <div id="barchart" class="chart">
 </div>
 <script>
 
     var first_year = 1959;
     var years = 20;
+
+    var bins = [];
+    for (var i=0;i<years;i++) {
+        bins.push(0);
+    }
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = 800 - margin.left - margin.right,
@@ -36,19 +38,11 @@
 
 
     $.getJSON("../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json", function(data) {
-        var bins = [];
-        for (var i=0;i<years;i++) {
-            bins.push(0);
-        }
-
-        console.log(bins);
 
         $.each(data['launches'], function(i, launch) {
             var n = tformat.parse(launch['date']).getFullYear() - first_year;
             bins[n] += 1;
         });
-
-        console.log(bins);
 
         x.domain(bins.map(function (d, i) { return first_year+i; }));
         y.domain([0, 5]);

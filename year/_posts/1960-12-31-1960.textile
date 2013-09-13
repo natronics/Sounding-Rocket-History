@@ -6,11 +6,20 @@ tags: [4]
 
 h1. 1960 Launches
 
+h2. Over Time:
+
+{% include launchchart.html %}
+
+<hr>
+
+h2. Table:
+
 table(table).
 |.Launch Date|.Launch Vehicle|.Location|
 |1960-05-17 19:22:00|"Aerobee 100":../Aerobee-100|"Fort Churchill":../Fort-Churchill|
 |1960-09-15 18:09:00|"Aerobee 100":../Aerobee-100|"Fort Churchill":../Fort-Churchill|
 |1960-11-23 10:19:00|"Aerobee 100":../Aerobee-100|"Fort Churchill":../Fort-Churchill|
 |1960-11-27 17:48:00|"Aerobee 100":../Aerobee-100|"Fort Churchill":../Fort-Churchill|
-{% include launchchart.html %}
+
+Download raw data: <a href="../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json">{{ page.id | remove_first:'/'}}.json</a>
 

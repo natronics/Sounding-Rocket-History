@@ -48,6 +48,14 @@ tags: [{launches}]
 
 h1. {slice} Launches
 
+h2. Over Time:
+
+{{% include launchchart.html %}}
+
+<hr>
+
+h2. Table:
+
 table(table).
 |.Launch Date|.Launch Vehicle|.Location|
 """.format(slice=slicekey, launches=len(launches)))
@@ -64,7 +72,7 @@ table(table).
 
                 post.write(line.format(date=launch['date']))
 
-            post.write("{% include launchchart.html %}\n\n")
+            post.write('\nDownload raw data: <a href="../data/{{ page.categories }}/{{ page.id | remove_first:\'/\'}}.json">{{ page.id | remove_first:\'/\'}}.json</a>\n\n')
 
         # Raw data
         filename = 'data/{setkey}/{slice}.json'.format(setkey=name, slice=slicekey.replace(' ','-'))
