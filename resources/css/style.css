@@ -1,3 +1,19 @@
+html, body, .wrapper { height: 100%; margin: 0; padding: 0; }
+body > .wrapper { height: auto; min-height: 100%; }
+#content { padding-bottom: 200px; }
+#footer { clear: both; position: relative; z-index: 10; height: 150px; margin-top: -150px; }
+
+#header a {
+    color: #888;
+    font-family: 'Raleway';
+    font-weight: 200;
+    font-size: 0.6em;
+}
+
+#header a:hover {
+    color: #222;
+    text-decoration: none;
+}
 
 /* Charts */
 .chart rect {
@@ -22,4 +38,13 @@
 .chart .tick text {
     font-size: 12px;
     font-family: monospace;
+}
+
+
+/* Footer */
+
+#footer {
+	background: #f7f7f7;
+	padding-top: 20px;
+    font-size: 0.9em;
 }
