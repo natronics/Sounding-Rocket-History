@@ -1,7 +1,6 @@
 <div id="barchart" class="chart">
 </div>
 <script>
-
     var first_year = 1959;
     var years = 20;
 
@@ -11,7 +10,7 @@
     }
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
-        width = 800 - margin.left - margin.right,
+        width = $('#barchart').width() - 25 - margin.left - margin.right,
         height = 250 - margin.top - margin.bottom;
 
     var x = d3.scale.ordinal()
