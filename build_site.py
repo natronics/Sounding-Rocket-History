@@ -30,12 +30,20 @@ with open('rawdata/sounding-rocket-history.csv', 'r') as f_in:
                 flights['loc'][location] = []
             flights['loc'][location].append(launch)
 
+# Write all flights to json
+with open('data/sounding-rockets.json', 'w') as j:
+    l = []
+    for launch in flights['all']:
+        tmp = deepcopy(launch)
+        tmp['date'] = tmp['date'].isoformat()
+        l.append(tmp)
+    j.write(json.dumps({'launches': l}))
 
 for key, name in {'year': "year", 'lv': "launch-vehicle", 'loc': "location"}.iteritems():
 
     for slicekey, launches in flights[key].iteritems():
 
-        # Textile for jekyll pages
+        # Markdown for jekyll pages
         filename = '{setkey}/_posts/2013-01-01-{slice}.markdown'.format(setkey=name, slice=slicekey.replace(' ','-'))
         if key == 'year':
             filename = '{setkey}/_posts/{slice}-12-31-{slice}.markdown'.format(setkey=name, slice=slicekey)
