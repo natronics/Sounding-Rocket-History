@@ -4,6 +4,10 @@
 <div id="barchart" class="chart">
 </div>
 <script>
+
+    var first_year = 1959;
+    var years = 20;
+
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = 800 - margin.left - margin.right,
         height = 250 - margin.top - margin.bottom;
@@ -16,8 +20,7 @@
 
     var xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom")
-        .tickFormat(d3.time.format("%Y"));
+        .orient("bottom");
 
     var yAxis = d3.svg.axis()
         .scale(y)
@@ -33,30 +36,42 @@
 
 
     $.getJSON("../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json", function(data) {
-        var times = Array();
+        var bins = [];
+        for (var i=0;i<years;i++) {
+            bins.push(0);
+        }
+
+        console.log(bins);
+
         $.each(data['launches'], function(i, launch) {
-            times.push(tformat.parse(launch['date']));
+            var n = tformat.parse(launch['date']).getFullYear() - first_year;
+            bins[n] += 1;
         });
 
+        console.log(bins);
 
-        x.domain(times);
-        y.domain([0, 1]);
+        x.domain(bins.map(function (d, i) { return first_year+i; }));
+        y.domain([0, 5]);
 
         svg.append("g")
           .attr("class", "x axis")
           .attr("transform", "translate(0," + height + ")")
-          .call(xAxis);
+          .call(xAxis)
+            .selectAll("text")  
+                .style("text-anchor", "end")
+                .attr("dx", "2.8em")
+                .attr("dy", ".15em")
+                .attr("transform", function(d) {
+                    return "rotate(45)" 
+                });
 
         svg.selectAll(".bar")
-          .data(times)
+          .data(bins)
         .enter().append("rect")
           .attr("class", "bar")
-          .attr("x", function(d) { return x(d); })
+          .attr("x", function(d, i) { return x(first_year+i); })
           .attr("width", x.rangeBand())
-          .attr("y", function(d) { return 0.8; })
-          .attr("height", function(d) { return height - 0.8; });
-        
-        
-        console.log(times);
+          .attr("y", function(d, i ) { return y(d); })
+          .attr("height", function(d, i) { return height - y(d); });
     });
 </script>

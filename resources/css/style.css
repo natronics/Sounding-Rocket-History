@@ -18,3 +18,8 @@
     stroke-width: 1;
 
 }
+
+.chart .tick text {
+    font-size: 12px;
+    font-family: monospace;
+}
