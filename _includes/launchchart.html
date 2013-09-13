@@ -4,10 +4,8 @@
     var first_year = 1959;
     var years = 20;
 
-    var bins = [];
-    for (var i=0;i<years;i++) {
-        bins.push(0);
-    }
+    var bins = d3.range(years);
+    bins.forEach(function (i) { bins[i] = 0; });
 
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = $('#barchart').width() - 25 - margin.left - margin.right,

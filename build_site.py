@@ -36,9 +36,9 @@ for key, name in {'year': "year", 'lv': "launch-vehicle", 'loc': "location"}.ite
     for slicekey, launches in flights[key].iteritems():
 
         # Textile for jekyll pages
-        filename = '{setkey}/_posts/2013-01-01-{slice}.textile'.format(setkey=name, slice=slicekey.replace(' ','-'))
+        filename = '{setkey}/_posts/2013-01-01-{slice}.markdown'.format(setkey=name, slice=slicekey.replace(' ','-'))
         if key == 'year':
-            filename = '{setkey}/_posts/{slice}-12-31-{slice}.textile'.format(setkey=name, slice=slicekey)
+            filename = '{setkey}/_posts/{slice}-12-31-{slice}.markdown'.format(setkey=name, slice=slicekey)
         with open(filename, 'w') as post:
             post.write("""---
 layout: base
@@ -46,33 +46,35 @@ title: {slice}
 tags: [{launches}]
 ---
 
-h1. {slice} Launches
+# {slice} Launches
 
-h2. Over Time:
+## Over Time:
 
 {{% include launchchart.html %}}
 
-<hr>
+<hr />
 
-h2. Table:
+## Table:
 
-table(table).
-|.Launch Date|.Launch Vehicle|.Location|
+{{: .table .table-hover}}
+ Launch Date | Launch Vehicle | Location
+ ----------- | -------------- | --------
 """.format(slice=slicekey, launches=len(launches)))
 
             for launch in launches:
                 lvlink = launch['vehicle']
                 loclink = launch['location']
                 if slicekey != launch['vehicle']:
-                    lvlink = '"'+launch['vehicle']+'":../'+launch['vehicle'].replace(' ','-')
+                    lvlink = '['+launch['vehicle']+'](../'+launch['vehicle'].replace(' ','-')+')'
                 if slicekey != launch['location']:
-                    loclink = '"'+launch['location']+'":../' + launch['location'].replace(' ','-')
+                    loclink = '['+launch['location']+'](../' + launch['location'].replace(' ','-')+')'
 
-                line = '|{date}|'+lvlink+'|'+loclink+'|\n'
+
+                line = ' {date} | '+lvlink+' | '+loclink+'\n'
 
                 post.write(line.format(date=launch['date']))
 
-            post.write('\nDownload raw data: <a href="../data/{{ page.categories }}/{{ page.id | remove_first:\'/\'}}.json">{{ page.id | remove_first:\'/\'}}.json</a>\n\n')
+            post.write("\nDownload raw data: [{{ page.id | remove_first:'/'}}.json](../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json)\n")
 
         # Raw data
         filename = 'data/{setkey}/{slice}.json'.format(setkey=name, slice=slicekey.replace(' ','-'))

@@ -1,0 +1,22 @@
+---
+layout: base
+title: 1962
+tags: [1]
+---
+
+# 1962 Launches
+
+## Over Time:
+
+{% include launchchart.html %}
+
+<hr />
+
+## Table:
+
+{: .table .table-hover}
+ Launch Date | Launch Vehicle | Location
+ ----------- | -------------- | --------
+ 1962-09-06 00:00:00 | [Aerobee 100](../Aerobee-100) | [White Sands Missile Range](../White-Sands-Missile-Range)
+
+Download raw data: [{{ page.id | remove_first:'/'}}.json](../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json)
