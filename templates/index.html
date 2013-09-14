@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/resources/css/style.css" rel="stylesheet">
+  <script src="/resources/js/jquery-2.0.3.min.js">
+  </script>
+ <title>Edit Sounding Rocket Data</title>
+ </head>
+ <body>
+  <div class="wrapper">
+   <div id="header">
+    <div class="container">
+     <h1>Edit Sounding Rocket Data</h1>
+    </div>
+   </div>
+   <div id="content">
+    <div class="container">
+      <h3>All Records</h3>
+      <table class="table">
+       <thead>
+        <tr><th>ID</th><th>Date</th></tr>
+       </thead>
+       <tbody>
+        {% for launch in launches %}
+          <tr>
+            <td>{{ launch.id }}</td><td>{{ launch.date }}</td>
+          </tr>
+        {% endfor %}
+       </tbody>
+      </table>
+    </div>
+   </div>
+  </div>
+  <div id="footer">
+   <div class="container">
+    <a class="pull-right" href="#">Back to top</a>
+   </div>
+  </div>
+ </body>
+</html>
+

@@ -39,3 +39,6 @@ _site/
 
 # NTRS sandbox
 research/
+
+# migrations
+database/db_repository/
