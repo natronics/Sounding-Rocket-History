@@ -14,6 +14,11 @@ def index():
     launches = database.models.Launch.query.all()
     return render_template('index.html', launches=launches)
 
+@app.route("/vehicle/<int:lvid>")
+def vehicle(lvid):
+    vehicle = database.models.Vehicle.query.get(lvid)
+    return render_template('vehicle.html', vehicle=vehicle)
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
