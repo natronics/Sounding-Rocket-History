@@ -21,12 +21,12 @@
       <h3>All Records</h3>
       <table class="table">
        <thead>
-        <tr><th>ID</th><th>Date</th></tr>
+        <tr><th>ID</th><th>Date</th><th>Launch Vehicle</th><th>Designation</th></tr>
        </thead>
        <tbody>
         {% for launch in launches %}
           <tr>
-            <td>{{ launch.id }}</td><td>{{ launch.date }}</td>
+            <td>{{ launch.id }}</td><td>{{ launch.time }}</td><td>{{ launch.vehicle.name }}</td><td>{{ launch.designation }}</td>
           </tr>
         {% endfor %}
        </tbody>
