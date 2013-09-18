@@ -1,48 +1,21 @@
-<!doctype html>
-<html lang="en">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/resources/css/style.css" rel="stylesheet">
-  <script src="/resources/js/jquery-2.0.3.min.js">
-  </script>
- <title>Edit Sounding Rocket Data</title>
- </head>
- <body>
-  <div class="wrapper">
-   <div id="header">
-    <div class="container">
-     <h1>Edit Sounding Rocket Data</h1>
-    </div>
-   </div>
-   <div id="content">
-    <div class="container">
-      <h3>All Records</h3>
-      <table class="table">
-       <thead>
-        <tr><th>ID</th><th>Designation</th><th>Date</th><th>Launch Vehicle</th><th>Launch Site</th></tr>
-       </thead>
-       <tbody>
-        {% for launch in launches %}
-          <tr>
-            <td>{{ launch.id }}</td>
-            <td>{{ launch.designation }}</td>
-            <td>{{ launch.time }}</td>
-            <td>{{ launch.vehicle.name }}</td>
-            <td>{{ launch.site.name }}</td>
-          </tr>
-        {% endfor %}
-       </tbody>
-      </table>
-    </div>
-   </div>
-  </div>
-  <div id="footer">
-   <div class="container">
-    <a class="pull-right" href="#">Back to top</a>
-   </div>
-  </div>
- </body>
-</html>
-
+{% extends "base.html" %}
+{% block content %}
+<h3>All Records</h3>
+<table class="table">
+ <thead>
+  <tr><th>ID</th><th>Designation</th><th>Date</th><th>Launch Vehicle</th><th>Launch Site</th><th> </th></tr>
+ </thead>
+ <tbody>
+  {% for launch in launches %}
+  <tr>
+    <td>{{ launch.id }}</td>
+    <td>{{ launch.designation }}</td>
+    <td>{{ launch.time }}</td>
+    <td><a href="/vehicle/{{ launch.vehicle.id }}">{{ launch.vehicle.name }}</a></td>
+    <td>{{ launch.site.name }}</td>
+    <td><button type="button" class="btn btn-default btn-xs pull-right">Edit</button></td>
+  </tr>
+ {% endfor %}
+ </tbody>
+</table>
+{% endblock %}
