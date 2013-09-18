@@ -2,15 +2,19 @@
 {% block content %}
 <h2>Edit {{ vehicle.name }} (id:{{ vehicle.id }})</h2>
 <div class="row">
- <div class="col-lg-5">
-  <form role="form\">
+ <div class="col-lg-8">
+  {% if updated %}
+    <div id="updatesucess" class="alert alert-success"><strong>Success!</strong> record updated.</div>
+    <script>setTimeout(function(){$("#updatesucess").fadeOut("slow");}, 2000);</script>
+  {% endif %}
+  <form role="form" method="post">
    <div class="form-group">
-    <label for="vehiclename">Name</label>
-    <input type="text" class="form-control" id="vehiclename" value="{{ vehicle.name }}">
+    <label for="vehicle.name">Name</label>
+    <input name="vehicle.name" type="text" class="form-control" id="vehicle.name" value="{{ vehicle.name }}">
    </div>
    <div class="form-group">
-    <label for="vehicledesc">Article</label>
-    <textarea class="form-control" id="vehicledesc" rows="10">{{ vehicle.desc }}</textarea>
+    <label for="vehicle.desc">Article</label>
+    <textarea name="vehicle.desc" class="form-control" id="vehicle.desc" rows="10">{{ vehicle.desc }}</textarea>
    </div>
 
    <button type="submit" class="btn btn-default">Update</button>
