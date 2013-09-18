@@ -4,7 +4,7 @@ from editor import db
 import datetime
 
 
-lv = models.Vehicle(name='Nike Asp')
+lv = models.Vehicle(name='Nike Asp', desc=u"First lauched in whenever")
 db.session.add(lv)
 db.session.commit()
 

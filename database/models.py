@@ -6,6 +6,8 @@ UNKNOWN, SUCCESS, PARTIAL_SUCCESS, FAILURE = range(4)
 class Vehicle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
+    desc = db.Column(db.UnicodeText())
+
     launches = db.relationship('Launch', backref='vehicle', lazy='dynamic')
 
     def __repr__(self):
