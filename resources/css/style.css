@@ -63,3 +63,9 @@ body > .wrapper { height: auto; min-height: 100%; }
 	padding-top: 20px;
     font-size: 0.9em;
 }
+
+
+div.ui-datepicker{
+ font-size:11px;
+}
+

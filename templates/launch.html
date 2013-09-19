@@ -2,13 +2,22 @@
 {% block content %}
 <h2>Create Launch</h2>
 <div class="row">
- <div class="col-lg-8">
+ <div class="col-lg-6">
   <form role="form" method="post">
 
    <div class="form-group">
     <label for="launch.datetime">Time</label>
-    <input name="launch.datetime" type="text" class="form-control" id="launch.datetime" value="">
+    <input name="launch.datetime" type="text" class="form-control" id="launchdatetime" value="">
    </div>
+   <script>
+    $('#launchdatetime').datetimepicker({
+        dateFormat: "yy-mm-dd",
+        timeFormat: 'HH:mm:ss',
+        stepHour: 1,
+        stepMinute: 5,
+        stepSecond: 10
+    });
+   </script>
 
    <div class="form-group">
     <label for="launch.desg">Designation</label>
@@ -32,9 +41,11 @@
    <div class="form-group">
     <label>Launch Vehicle</label>
     <div class="dropdown">
-      <a id="lvdrop" role="button" data-toggle="dropdown" href="#" class="btn btn-default">Nike Asp <b class="caret"></b></a>
+      <a id="lvdrop" role="button" data-toggle="dropdown" href="#" class="btn btn-default btn-group-justified">Nike Asp <b class="caret"></b></a>
       <ul id="lvdropl" class="dropdown-menu" role="menu" aria-labelledby="lvdrop">
        <li role="presentation"><a role="menuitem" tabindex="-1">Nike Asp</a></li>
+       <li role="presentation" class="divider"></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" class="btn btn-default">+ Create New Launch Vehicle</a></li>
       </ul>
       <input name="launch.lv" type="text" class="hidden" id="launch.lv" value="1">
     </div>
@@ -43,9 +54,11 @@
    <div class="form-group">
     <label>Launch Site</label>
     <div class="dropdown">
-      <a id="sitedrop" role="button" data-toggle="dropdown" href="#" class="btn btn-default">Wallops Flight Facility <b class="caret"></b></a>
+      <a id="sitedrop" role="button" data-toggle="dropdown" href="#" class="btn btn-default btn-group-justified">Wallops Flight Facility <b class="caret"></b></a>
       <ul id="sitedropl" class="dropdown-menu" role="menu" aria-labelledby="sitedrop">
        <li role="presentation"><a role="menuitem" tabindex="-1">Wallops Flight Facility</a></li>
+       <li role="presentation" class="divider"></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" class="btn btn-default">+ Create New Launch Site</a></li>
       </ul>
       <input name="launch.site" type="text" class="hidden" id="launch.site" value="1">
     </div>
@@ -54,7 +67,7 @@
 
    <hr>
 
-   <button type="submit" class="btn btn-default">Update</button>
+   <button type="submit" class="btn btn-primary">Create</button>
   </form>
  </div>
 </div>
