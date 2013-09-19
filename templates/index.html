@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>All Records</h3>
-<table class="table">
+<h3>All Launches</h3>
+<table class="table table-hover">
  <thead>
   <tr><th>ID</th><th>Designation</th><th>Date</th><th>Launch Vehicle</th><th>Launch Site</th><th> </th></tr>
  </thead>
@@ -19,7 +19,7 @@
  </tbody>
  <tfoot>
   <tr>
-   <td colspan="6"><button type="button" class="btn btn-primary">+ New</button></td>
+   <td colspan="6"><a href="/launch/new" class="btn btn-primary">+ New</a></td>
   </tr>
  </tfoot>
 </table>

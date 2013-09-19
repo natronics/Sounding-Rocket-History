@@ -26,6 +26,10 @@ def vehicle(lvid):
 
     return render_template('vehicle.html', vehicle=vehicle, updated=updated)
 
+@app.route("/launch/new", methods=['GET', 'POST'])
+def launch():
+    return render_template('launch.html')
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
