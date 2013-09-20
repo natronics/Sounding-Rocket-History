@@ -27,14 +27,14 @@
    <div class="form-group">
     <label>Status</label>
     <div class="dropdown">
-      <a id="drop4" role="button" data-toggle="dropdown" href="#" class="btn btn-default">Unknown <b class="caret"></b></a>
-      <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-       <li role="presentation"><a role="menuitem" tabindex="-1">Unknown</a></li>
-       <li role="presentation"><a role="menuitem" tabindex="-1">Success</a></li>
-       <li role="presentation"><a role="menuitem" tabindex="-1">Partial Success</a></li>
-       <li role="presentation"><a role="menuitem" tabindex="-1">Failure</a></li>
+      <a id="sucdrop" role="button" data-toggle="dropdown" href="#" class="btn btn-default">Unknown <b class="caret"></b></a>
+      <ul id="sucdropl" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setsuc('Unknown', 0)">Unknown</a></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setsuc('Success', 1)">Success</a></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setsuc('Partial Success', 2)">Partial Success</a></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setsuc('Failure', 3)">Failure</a></li>
       </ul>
-      <input name="launch.status" type="text" class="hidden" id="launch.status" value="1">
+      <input name="launch.status" type="text" class="hidden" id="launchstatus" value="0">
     </div>
    </div>
 
@@ -43,11 +43,11 @@
     <div class="dropdown">
       <a id="lvdrop" role="button" data-toggle="dropdown" href="#" class="btn btn-default btn-group-justified">Nike Asp <b class="caret"></b></a>
       <ul id="lvdropl" class="dropdown-menu" role="menu" aria-labelledby="lvdrop">
-       <li role="presentation"><a role="menuitem" tabindex="-1">Nike Asp</a></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setlv('Nike Asp', 1)">Nike Asp</a></li>
        <li role="presentation" class="divider"></li>
        <li role="presentation"><a role="menuitem" tabindex="-1" class="btn btn-default">+ Create New Launch Vehicle</a></li>
       </ul>
-      <input name="launch.lv" type="text" class="hidden" id="launch.lv" value="1">
+      <input name="launch.lv" type="text" class="hidden" id="launchlv" value="1">
     </div>
    </div>
 
@@ -56,13 +56,28 @@
     <div class="dropdown">
       <a id="sitedrop" role="button" data-toggle="dropdown" href="#" class="btn btn-default btn-group-justified">Wallops Flight Facility <b class="caret"></b></a>
       <ul id="sitedropl" class="dropdown-menu" role="menu" aria-labelledby="sitedrop">
-       <li role="presentation"><a role="menuitem" tabindex="-1">Wallops Flight Facility</a></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setsite('Wallops Flight Facility', 1)">Wallops Flight Facility</a></li>
        <li role="presentation" class="divider"></li>
        <li role="presentation"><a role="menuitem" tabindex="-1" class="btn btn-default">+ Create New Launch Site</a></li>
       </ul>
-      <input name="launch.site" type="text" class="hidden" id="launch.site" value="1">
+      <input name="launch.site" type="text" class="hidden" id="launchsite" value="1">
     </div>
    </div>
+
+    <script>
+        var setlv = function (name, i) {
+            $("#lvdrop").html(name + ' <b class="caret"></b>');
+            $("#launchlv").val(i);
+        };
+        var setsuc = function (name, i) {
+            $("#sucdrop").html(name + ' <b class="caret"></b>');
+            $("#launchstatus").val(i);
+        };
+        var setsite = function (name, i) {
+            $("#sitedrop").html(name + ' <b class="caret"></b>');
+            $("#launchsite").val(i);
+        };
+    </script>
 
 
    <hr>

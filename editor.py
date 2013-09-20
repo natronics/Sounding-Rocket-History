@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
+from dateutil import parser
 import config
 
 app = Flask(__name__, static_folder='resources')
@@ -28,6 +29,18 @@ def vehicle(lvid):
 
 @app.route("/launch/new", methods=['GET', 'POST'])
 def launch():
+    if request.method == 'POST':
+        time = parser.parse(request.form['launch.datetime'])
+        desig = request.form['launch.desg']
+        success = int(request.form['launch.status'])
+        lvid = request.form['launch.lv']
+        siteid = request.form['launch.site']
+
+        lch = database.models.Launch(time=time, designation=desig, success=success, lv_id=lvid, site_id=siteid)
+        db.session.add(lch)
+        db.session.commit()
+        return redirect(url_for('index'))
+
     return render_template('launch.html')
 
 if __name__ == "__main__":

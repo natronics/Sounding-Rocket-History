@@ -7,7 +7,6 @@ class Vehicle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     desc = db.Column(db.UnicodeText())
-
     launches = db.relationship('Launch', backref='vehicle', lazy='dynamic')
 
     def __repr__(self):
@@ -22,6 +21,8 @@ class Site(db.Model):
     country = db.Column(db.String(128))
     launches = db.relationship('Launch', backref='site', lazy='dynamic')
 
+    def __repr__(self):
+        return '<site %s (%d)>' % (self.name, self.id)
 
 class Launch(db.Model):
     id = db.Column(db.Integer, primary_key=True)
