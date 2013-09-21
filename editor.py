@@ -28,6 +28,18 @@ def vehicle(lvid):
 
     return render_template('vehicle.html', vehicle=vehicle, updated=updated)
 
+@app.route("/vehicle/new", methods=['GET', 'POST'])
+def new_vehicle():
+    if request.method == 'POST':
+        name = request.form['vehicle.name']
+        desc = request.form['vehicle.desc']
+        lv = database.models.Vehicle(name=name, desc=desc)
+        db.session.add(lv)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('vehicle.html', vehicle=None, updated=False)
+
+
 @app.route("/launch/new", methods=['GET', 'POST'])
 def launch():
     if request.method == 'POST':
