@@ -43,9 +43,11 @@
     <div class="dropdown">
       <a id="lvdrop" role="button" data-toggle="dropdown" href="#" class="btn btn-default btn-group-justified">Nike Asp <b class="caret"></b></a>
       <ul id="lvdropl" class="dropdown-menu" role="menu" aria-labelledby="lvdrop">
-       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setlv('Nike Asp', 1)">Nike Asp</a></li>
+        {% for lv in vehicles %}
+            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setlv('{{ lv.name }}', {{ lv.id }})">{{ lv.name }}</a></li>
+        {% endfor %}
        <li role="presentation" class="divider"></li>
-       <li role="presentation"><a role="menuitem" tabindex="-1" class="btn btn-default">+ Create New Launch Vehicle</a></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" href="/vehicle/new">+ Create New Launch Vehicle</a></li>
       </ul>
       <input name="launch.lv" type="text" class="hidden" id="launchlv" value="1">
     </div>

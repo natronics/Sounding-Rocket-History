@@ -9,6 +9,11 @@ class Vehicle(db.Model):
     desc = db.Column(db.UnicodeText())
     launches = db.relationship('Launch', backref='vehicle', lazy='dynamic')
 
+    crud = {
+        'name': {'title': u"Name", 'type': 'short'},
+        'desc': {'title': u"Article", 'type': 'text'},
+    }
+
     def __repr__(self):
         return '<vehicle %s (%d)>' % (self.name, self.id)
 

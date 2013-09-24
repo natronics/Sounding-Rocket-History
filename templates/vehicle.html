@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Edit {{ vehicle.name }} (id:{{ vehicle.id }})</h2>
+<h2>Edit</h2>
 <div class="row">
  <div class="col-lg-8">
   {% if updated %}
@@ -8,13 +8,18 @@
     <script>setTimeout(function(){$("#updatesucess").fadeOut("slow");}, 2000);</script>
   {% endif %}
   <form role="form" method="post">
-   <div class="form-group">
-    <label for="vehicle.name">Name</label>
-    <input name="vehicle.name" type="text" class="form-control" id="vehicle.name" value="{{ vehicle.name }}">
-   </div>
+
+    {% for field, meta in fields.iteritems() %}
+        <div class="form-group">
+            <label for="vehicle{{ field }}">{{ meta.title }}</label>
+            {% if meta.type == 'short' %}
+                <input name="vehicle.{{ field }}" type="text" class="form-control" id="vehicle{{ field }}" value="{{ meta.val }}">
+            {% endif %}
+        </div>
+    {% endfor %}
    <div class="form-group">
     <label for="vehicle.desc">Article</label>
-    <textarea name="vehicle.desc" class="form-control" id="vehicle.desc" rows="10">{{ vehicle.desc }}</textarea>
+    <textarea name="vehicle.desc" class="form-control" id="vehicle.desc" rows="10"></textarea>
    </div>
 
    <button type="submit" class="btn btn-default">Update</button>
