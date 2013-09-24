@@ -42,3 +42,4 @@ research/
 
 # migrations
 database/db_repository/
+database/*.db
