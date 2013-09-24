@@ -7,12 +7,14 @@ class Vehicle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     desc = db.Column(db.UnicodeText())
+    length = db.Column(db.Float())
     launches = db.relationship('Launch', backref='vehicle', lazy='dynamic')
 
-    crud = {
-        'name': {'title': u"Name", 'type': 'short'},
-        'desc': {'title': u"Article", 'type': 'text'},
-    }
+    crud = [
+        {'key': 'name', 'title': u"Name", 'type': 'short'},
+        {'key': 'length', 'title': u"Length", 'type': 'short'},
+        {'key': 'desc', 'title': u"Article", 'type': 'text'},
+    ]
 
     def __repr__(self):
         return '<vehicle %s (%d)>' % (self.name, self.id)

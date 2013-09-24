@@ -26,13 +26,10 @@ def vehicle(lvid):
         db.session.commit()
         updated = True
 
-    fields = {}
-    for field, meta in vehicle.crud.iteritems():
-        fields[field] = {}
-        for key, data in meta.iteritems():
-            fields[field][key] = data
-        fields[field]['val'] =  getattr(vehicle, field)
-
+    fields = []
+    for meta in vehicle.crud:
+        fields.append(dict({'val': getattr(vehicle, meta['key'])}, **meta))
+        
     return render_template('vehicle.html', name=vehicle.name, fields=fields, updated=updated)
 
 @app.route("/vehicle/new", methods=['GET', 'POST'])
