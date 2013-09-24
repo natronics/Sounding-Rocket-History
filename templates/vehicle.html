@@ -17,8 +17,9 @@
               </div>
             {% elif meta.type == 'number' %}
               <div class="col-lg-2">
-                <input name="vehicle.{{ meta.key }}" type="number" min="0" max="110" step="0.01" class="form-control" id="vehicle{{ meta.key }}" value="{{ meta.val }}">
+                <input name="vehicle.{{ meta.key }}" type="number" min="0" max="110" step="0.01" class="form-control input-sm" id="vehicle{{ meta.key }}" value="{{ meta.val }}">
               </div>
+              <p class="units form-control-static col-lg-3">[{{ meta.units }}]<p>
             {% elif meta.type == 'text' %}
               <div class="col-lg-10">
                 <textarea name="vehicle.{{ meta.key }}" class="form-control" id="vehicle{{ meta.key }}" rows="10">{{ meta.val }}</textarea>
@@ -26,7 +27,9 @@
             {% endif %}
         </div>
     {% endfor %}
-   <button type="submit" class="btn btn-default">{% if name is not none %}Update{% else %}Create{% endif %}</button>
+   <div class="col-lg-offset-2">
+     <button type="submit" class="btn btn-primary">{% if name is not none %}Update{% else %}Create{% endif %}</button>
+   </div>
   </form>
  </div>
 </div>

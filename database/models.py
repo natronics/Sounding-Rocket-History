@@ -13,8 +13,8 @@ class Vehicle(db.Model):
 
     crud = [
         {'key': 'name', 'title': u"Name", 'type': 'short'},
-        {'key': 'length', 'title': u"Length", 'type': 'number'},
-        {'key': 'width', 'title': u"Width", 'type': 'number'},
+        {'key': 'length', 'title': u"Length", 'type': 'number', 'units': "meters"},
+        {'key': 'width', 'title': u"Width", 'type': 'number', 'units': "meters"},
         {'key': 'desc', 'title': u"Article", 'type': 'text'},
     ]
 
