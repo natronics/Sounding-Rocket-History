@@ -28,11 +28,12 @@ def vehicle(lvid):
 
     fields = {}
     for field, meta in vehicle.crud.iteritems():
-        fields[field] = meta
+        fields[field] = {}
+        for key, data in meta.iteritems():
+            fields[field][key] = data
         fields[field]['val'] =  getattr(vehicle, field)
 
-
-    return render_template('vehicle.html', fields=fields, updated=updated)
+    return render_template('vehicle.html', name=vehicle.name, fields=fields, updated=updated)
 
 @app.route("/vehicle/new", methods=['GET', 'POST'])
 def new_vehicle():
@@ -43,7 +44,8 @@ def new_vehicle():
         db.session.add(lv)
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('vehicle.html', vehicle=None, updated=False)
+
+    return render_template('vehicle.html', name=None, fields=database.models.Vehicle.crud, updated=False)
 
 
 @app.route("/launch/new", methods=['GET', 'POST'])
