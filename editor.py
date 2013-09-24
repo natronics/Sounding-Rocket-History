@@ -18,12 +18,6 @@ def index():
 @app.route("/vehicle/<int:lvid>", methods=['GET', 'POST'])
 def vehicle(lvid):
     vehicle = database.models.Vehicle.query.get(lvid)
-
-    fields = {}
-    for field, meta in vehicle.crud.iteritems():
-        fields[field] = meta
-        fields[field]['val'] =  getattr(vehicle, field)
-
     updated = False
     if request.method == 'POST':
         vehicle.name = request.form['vehicle.name']
@@ -31,6 +25,12 @@ def vehicle(lvid):
         db.session.merge(vehicle)
         db.session.commit()
         updated = True
+
+    fields = {}
+    for field, meta in vehicle.crud.iteritems():
+        fields[field] = meta
+        fields[field]['val'] =  getattr(vehicle, field)
+
 
     return render_template('vehicle.html', fields=fields, updated=updated)
 
