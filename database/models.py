@@ -8,11 +8,13 @@ class Vehicle(db.Model):
     name = db.Column(db.String(128), nullable=False)
     desc = db.Column(db.UnicodeText())
     length = db.Column(db.Float())
+    width = db.Column(db.Float())
     launches = db.relationship('Launch', backref='vehicle', lazy='dynamic')
 
     crud = [
         {'key': 'name', 'title': u"Name", 'type': 'short'},
-        {'key': 'length', 'title': u"Length", 'type': 'short'},
+        {'key': 'length', 'title': u"Length", 'type': 'number'},
+        {'key': 'width', 'title': u"Width", 'type': 'number'},
         {'key': 'desc', 'title': u"Article", 'type': 'text'},
     ]
 

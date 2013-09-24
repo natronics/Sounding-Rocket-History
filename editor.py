@@ -22,6 +22,8 @@ def vehicle(lvid):
     if request.method == 'POST':
         vehicle.name = request.form['vehicle.name']
         vehicle.desc = request.form['vehicle.desc']
+        vehicle.length = request.form['vehicle.length']
+        vehicle.width = request.form['vehicle.width']
         db.session.merge(vehicle)
         db.session.commit()
         updated = True
