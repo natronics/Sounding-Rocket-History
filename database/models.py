@@ -2,6 +2,10 @@ from editor import db
 
 UNKNOWN, SUCCESS, PARTIAL_SUCCESS, FAILURE = range(4)
 
+lat_num = {'min': -90.0, 'max': 90.0, 'step': 0.0001}
+lon_num = {'min': -180.0, 'max': 180.0, 'step': 0.0001}
+length_num = {'min': 0.0, 'max': 110.6, 'step': 0.01}
+
 
 class Vehicle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -13,8 +17,8 @@ class Vehicle(db.Model):
 
     crud = [
         {'key': 'name', 'title': u"Name", 'type': 'short'},
-        {'key': 'length', 'title': u"Length", 'type': 'number', 'units': "meters"},
-        {'key': 'width', 'title': u"Width", 'type': 'number', 'units': "meters"},
+        {'key': 'length', 'title': u"Length", 'type': 'number', 'units': "meters", 'validate': length_num},
+        {'key': 'width', 'title': u"Width", 'type': 'number', 'units': "meters", 'validate': length_num},
         {'key': 'desc', 'title': u"Article", 'type': 'text'},
     ]
 
@@ -33,8 +37,8 @@ class Site(db.Model):
 
     crud = [
         {'key': 'name', 'title': u"Name", 'type': 'short'},
-        {'key': 'lat', 'title': u"Latitude", 'type': 'number', 'units': "degrees"},
-        {'key': 'lon', 'title': u"Longituded", 'type': 'number', 'units': "degrees"},
+        {'key': 'lat', 'title': u"Latitude", 'type': 'number', 'units': "degrees", 'validate': lat_num},
+        {'key': 'lon', 'title': u"Longituded", 'type': 'number', 'units': "degrees", 'validate': lon_num},
         {'key': 'country', 'title': u"Country", 'type': 'short'},
         {'key': 'desc', 'title': u"Article", 'type': 'text'},
     ]

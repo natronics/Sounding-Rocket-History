@@ -23,7 +23,7 @@
 
         {% elif meta.type == 'number' %}
             <div class="col-lg-2">
-              <input name="{{ model }}.{{ meta.key }}" type="number" min="0" max="110" step="0.01" class="form-control input-sm" id="{{ model }}{{ meta.key }}" value="{{ meta.val }}">
+              <input name="{{ model }}.{{ meta.key }}" type="number" min="{{ meta.validate.min }}" max="{{ meta.validate.max }}" step="{{ meta.validate.step }}" class="form-control input-sm" id="{{ model }}{{ meta.key }}" value="{{ meta.val }}">
             </div>
             <p class="units form-control-static col-lg-3">[{{ meta.units }}]<p>
 
