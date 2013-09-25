@@ -64,7 +64,7 @@ def launch():
         db.session.commit()
         return redirect(url_for('index'))
 
-    return render_template('launch.html', vehicles=database.models.Vehicle.query.all())
+    return render_template('launch.html', vehicles=database.models.Vehicle.query.all(), sites=database.models.Site.query.all())
 
 
 @app.route("/site/<int:siteid>", methods=['GET', 'POST'])
@@ -95,6 +95,32 @@ def site(siteid):
     }
 
     return render_template('edit_entry.html', **context)
+
+
+@app.route("/site/new", methods=['GET', 'POST'])
+def new_site():
+    if request.method == 'POST':
+        name = request.form['site.name']
+        desc = request.form['site.desc']
+        lat  = request.form['site.lat']
+        lon  = request.form['site.lon']
+        country = request.form['site.country']
+
+        site = database.models.Site(name=name, desc=desc, lat=lat, lon=lon, country=country)
+        db.session.add(site)
+        db.session.commit()
+        return redirect(url_for('index'))
+
+    context = {
+        'fields': database.models.Site.crud,
+        'updated': False,
+        'entrytype': "Launch Site",
+        'model': "site",
+        'name': None,
+    }
+
+    return render_template('edit_entry.html', **context)
+
 
 
 if __name__ == "__main__":

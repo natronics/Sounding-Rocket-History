@@ -7,7 +7,7 @@
 
    <div class="form-group">
     <label for="launch.datetime">Time</label>
-    <input name="launch.datetime" type="text" class="form-control" id="launchdatetime" value="">
+    <input name="launch.datetime" type="datetime" class="form-control" id="launchdatetime" value="">
    </div>
    <script>
     $('#launchdatetime').datetimepicker({
@@ -58,9 +58,11 @@
     <div class="dropdown">
       <a id="sitedrop" role="button" data-toggle="dropdown" href="#" class="btn btn-default btn-group-justified">Wallops Flight Facility <b class="caret"></b></a>
       <ul id="sitedropl" class="dropdown-menu" role="menu" aria-labelledby="sitedrop">
-       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setsite('Wallops Flight Facility', 1)">Wallops Flight Facility</a></li>
+        {% for site in sites %}
+            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="setsite('{{ site.name }}', {{ site.id }})">{{ site.name }}</a></li>
+        {% endfor %}
        <li role="presentation" class="divider"></li>
-       <li role="presentation"><a role="menuitem" tabindex="-1" class="btn btn-default">+ Create New Launch Site</a></li>
+       <li role="presentation"><a role="menuitem" tabindex="-1" class="btn btn-default" href="/site/new">+ Create New Launch Site</a></li>
       </ul>
       <input name="launch.site" type="text" class="hidden" id="launchsite" value="1">
     </div>
