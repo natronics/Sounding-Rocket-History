@@ -25,10 +25,20 @@ class Vehicle(db.Model):
 class Site(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
+    desc = db.Column(db.UnicodeText())
     lat = db.Column(db.Float, nullable=False)
     lon = db.Column(db.Float, nullable=False)
     country = db.Column(db.String(128))
     launches = db.relationship('Launch', backref='site', lazy='dynamic')
+
+    crud = [
+        {'key': 'name', 'title': u"Name", 'type': 'short'},
+        {'key': 'lat', 'title': u"Latitude", 'type': 'number', 'units': "degrees"},
+        {'key': 'lon', 'title': u"Longituded", 'type': 'number', 'units': "degrees"},
+        {'key': 'country', 'title': u"Country", 'type': 'short'},
+        {'key': 'desc', 'title': u"Article", 'type': 'text'},
+    ]
+
 
     def __repr__(self):
         return '<site %s (%d)>' % (self.name, self.id)

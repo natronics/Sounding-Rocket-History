@@ -63,6 +63,28 @@ def launch():
 
     return render_template('launch.html', vehicles=database.models.Vehicle.query.all())
 
+@app.route("/site/<int:siteid>", methods=['GET', 'POST'])
+def site(siteid):
+    site = database.models.Site.query.get(siteid)
+    updated = False
+    if request.method == 'POST':
+        updated = True
+
+    fields = []
+    for meta in site.crud:
+        fields.append(dict({'val': getattr(site, meta['key'])}, **meta))
+
+    context = {
+        'fields': fields,
+        'updated': updated,
+        'entrytype': "Launch Site",
+        'model': "site",
+        'name': site.name,
+    }
+
+    return render_template('edit_entry.html', **context)
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
