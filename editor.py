@@ -10,10 +10,12 @@ db = SQLAlchemy(app)
 
 import database.models
 
+
 @app.route("/")
 def index():
     launches = database.models.Launch.query.all()
     return render_template('index.html', launches=launches)
+
 
 @app.route("/vehicle/<int:lvid>", methods=['GET', 'POST'])
 def vehicle(lvid):
@@ -33,6 +35,7 @@ def vehicle(lvid):
         fields.append(dict({'val': getattr(vehicle, meta['key'])}, **meta))
         
     return render_template('vehicle.html', name=vehicle.name, fields=fields, updated=updated)
+
 
 @app.route("/vehicle/new", methods=['GET', 'POST'])
 def new_vehicle():
@@ -63,11 +66,20 @@ def launch():
 
     return render_template('launch.html', vehicles=database.models.Vehicle.query.all())
 
+
 @app.route("/site/<int:siteid>", methods=['GET', 'POST'])
 def site(siteid):
     site = database.models.Site.query.get(siteid)
     updated = False
     if request.method == 'POST':
+        site.name = request.form['site.name']
+        site.desc = request.form['site.desc']
+        site.lat  = request.form['site.lat']
+        site.lon  = request.form['site.lon']
+        site.country = request.form['site.country']
+
+        db.session.merge(site)
+        db.session.commit()
         updated = True
 
     fields = []

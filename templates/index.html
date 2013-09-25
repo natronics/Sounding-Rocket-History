@@ -12,7 +12,7 @@
     <td>{{ launch.designation }}</td>
     <td>{{ launch.time }}</td>
     <td><a href="/vehicle/{{ launch.vehicle.id }}">{{ launch.vehicle.name }}</a></td>
-    <td>{{ launch.site.name }}</td>
+    <td><a href="/site/{{ launch.vehicle.id }}">{{ launch.site.name }}</a></td>
     <td><button type="button" class="btn btn-default btn-xs pull-right">Edit</button></td>
   </tr>
  {% endfor %}
