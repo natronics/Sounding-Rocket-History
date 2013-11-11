@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, request, redirect, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext import admin
+from flask.ext.admin.contrib import sqla
+
 from dateutil import parser
 import config
 
@@ -122,7 +125,14 @@ def new_site():
     return render_template('edit_entry.html', **context)
 
 
+class SiteAdmin(sqla.ModelView):
+    column_display_pk = False
+    form_columns = ['id', 'desc']
+
 
 if __name__ == "__main__":
+    # Create admin
+    admin = admin.Admin(app, 'Sound Rocket Models')
+    admin.add_view(SiteAdmin(database.models.Site, db.session))
     app.debug = True
     app.run()
