@@ -1,10 +1,8 @@
 #!/usr/bin/env python
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, redirect
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext import admin
 from flask.ext.admin.contrib import sqla
-
-from dateutil import parser
 import config
 
 app = Flask(__name__, static_folder='resources')
@@ -12,7 +10,6 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 from database.models import *
-
 
 @app.route("/")
 def index():
@@ -28,7 +25,7 @@ class VehicleAdmin(sqla.ModelView):
 
 class LaunchAdmin(sqla.ModelView):
     column_display_pk = True
-    form_columns = ['time', 'designation', 'success', 'lv_id']
+    form_columns = ['time', 'designation', 'success', 'lv', 'ls']
 
 
 if __name__ == "__main__":

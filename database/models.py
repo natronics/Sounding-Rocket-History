@@ -14,7 +14,7 @@ class Vehicle(db.Model):
     launches = db.relationship('Launch', backref='vehicle', lazy='dynamic')
 
     def __repr__(self):
-        return '<vehicle %s (%d)>' % (self.name, self.id)
+        return '%s [%d]' % (self.name, self.id)
 
 
 class Site(db.Model):
@@ -29,7 +29,7 @@ class Site(db.Model):
     launches = db.relationship('Launch', backref='site', lazy='dynamic')
 
     def __repr__(self):
-        return '<site %s (%d)>' % (self.name, self.id)
+        return '%s [%d]' % (self.name, self.id)
 
 
 class Launch(db.Model):
@@ -41,6 +41,10 @@ class Launch(db.Model):
     success = db.Column(db.SmallInteger, default=UNKNOWN)
     lv_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
     site_id = db.Column(db.Integer, db.ForeignKey('site.id'))
+    lv = db.relationship('Vehicle', backref='launch')
+    ls = db.relationship('Site', backref='launch')
+
+
 
     def __repr__(self):
         return '<launch %d>' % self.id
