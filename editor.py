@@ -127,12 +127,23 @@ def new_site():
 
 class SiteAdmin(sqla.ModelView):
     column_display_pk = False
-    form_columns = ['id', 'desc']
+    form_columns = ['desc', 'lat', 'lon', 'country']
+
+class VehicleAdmin(sqla.ModelView):
+    column_display_pk = False
+    form_columns = ['desc', 'length', 'width']
+
+class LaunchAdmin(sqla.ModelView):
+    column_display_pk = True
+    form_columns = ['time', 'designation', 'success', 'lv_id']
 
 
 if __name__ == "__main__":
     # Create admin
     admin = admin.Admin(app, 'Sound Rocket Models')
     admin.add_view(SiteAdmin(database.models.Site, db.session))
+    admin.add_view(VehicleAdmin(database.models.Vehicle, db.session))
+    admin.add_view(LaunchAdmin(database.models.Launch, db.session))
+
     app.debug = True
     app.run()
