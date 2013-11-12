@@ -10,4 +10,7 @@ clean:
 
 regendb:
 	rm -f database/sounding-rocket-history.db
+	rm -f database/alembic/versions/*.py
+	rm -f database/alembic/versions/*.pyc
+	alembic revision --autogenerate -m "Initializing database"
 	alembic upgrade head

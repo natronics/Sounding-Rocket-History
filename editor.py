@@ -25,8 +25,11 @@ class VehicleAdmin(sqla.ModelView):
 
 class LaunchAdmin(sqla.ModelView):
     column_display_pk = True
-    form_columns = ['time', 'designation', 'success', 'lv', 'ls']
+    form_columns = ['time', 'designation', 'result', 'lv', 'ls']
 
+class ResultAdmin(sqla.ModelView):
+    column_display_pk = True
+    form_columns = ['name', 'desc']
 
 if __name__ == "__main__":
     # Create admin
@@ -34,6 +37,7 @@ if __name__ == "__main__":
     admin.add_view(SiteAdmin(Site, db.session))
     admin.add_view(VehicleAdmin(Vehicle, db.session))
     admin.add_view(LaunchAdmin(Launch, db.session))
+    admin.add_view(ResultAdmin(LaunchSuccess, db.session))
 
     app.debug = True
     app.run()
