@@ -9,7 +9,5 @@ clean:
 	rm -rf location/_posts/*
 
 regendb:
-	rm -rf database/db_repository
-	rm -rf database/sounding-rocket-history.db
-	./manage.py --create
-	./manage.py --migrate
+	rm -f database/sounding-rocket-history.db
+	alembic upgrade head

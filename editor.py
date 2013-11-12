@@ -11,18 +11,18 @@ app = Flask(__name__, static_folder='resources')
 app.config.from_object('config')
 db = SQLAlchemy(app)
 
-import database.models
+from database.models import *
 
 
 @app.route("/")
 def index():
-    launches = database.models.Launch.query.all()
+    launches = Launch.query.all()
     return render_template('index.html', launches=launches)
 
 
 @app.route("/vehicle/<int:lvid>", methods=['GET', 'POST'])
 def vehicle(lvid):
-    vehicle = database.models.Vehicle.query.get(lvid)
+    vehicle = Vehicle.query.get(lvid)
     updated = False
     if request.method == 'POST':
         vehicle.name = request.form['vehicle.name']
@@ -127,11 +127,11 @@ def new_site():
 
 class SiteAdmin(sqla.ModelView):
     column_display_pk = False
-    form_columns = ['desc', 'lat', 'lon', 'country']
+    form_columns = ['name', 'desc', 'lat', 'lon', 'country']
 
 class VehicleAdmin(sqla.ModelView):
     column_display_pk = False
-    form_columns = ['desc', 'length', 'width']
+    form_columns = ['name', 'desc', 'length', 'width']
 
 class LaunchAdmin(sqla.ModelView):
     column_display_pk = True
@@ -141,9 +141,9 @@ class LaunchAdmin(sqla.ModelView):
 if __name__ == "__main__":
     # Create admin
     admin = admin.Admin(app, 'Sound Rocket Models')
-    admin.add_view(SiteAdmin(database.models.Site, db.session))
-    admin.add_view(VehicleAdmin(database.models.Vehicle, db.session))
-    admin.add_view(LaunchAdmin(database.models.Launch, db.session))
+    admin.add_view(SiteAdmin(Site, db.session))
+    admin.add_view(VehicleAdmin(Vehicle, db.session))
+    admin.add_view(LaunchAdmin(Launch, db.session))
 
     app.debug = True
     app.run()
