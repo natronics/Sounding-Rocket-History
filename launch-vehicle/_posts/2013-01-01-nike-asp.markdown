@@ -1,0 +1,28 @@
+---
+layout: base
+title: Nike ASP
+tags: [4]
+---
+
+# <span class="small">Launch Vehicle:</span>  Nike ASP
+
+The Nike-Asp is an Asp rocket with a Nike booster system. It was at times ship-launched. After NASA took control of the project, the rocket fell into disuse.
+
+## Launches Over Time:
+
+{% include launchchart.html %}
+
+--------------------------------------------------------------------------------
+
+## Table:
+
+{: .table .table-hover}
+ Designator | Launch Date | Launch Site | Result | Apogee \[**km**\] 
+ ---------- | ----------- | ----------- | ------ | ----------------- 
+ 3.01 GS | 1960-03-01T22:11:00 | [Wallops Flight Facility](../wallops-flight-facility) | Success | 222.0 
+ 3.02 GS | 1960-03-03T22:50:00 | [Wallops Flight Facility](../wallops-flight-facility) | Success | 222.0 
+ 3.03 GS | 1960-04-27T21:56:00 | [Wallops Flight Facility](../wallops-flight-facility) | Failure | 24.0 
+ 3.10 UI | 1960-03-16T00:00:00 | [Fort Churchill](../fort-churchill) | Failure | None 
+
+
+Download raw data: [{{ page.id | remove_first:'/'}}.json](../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json)

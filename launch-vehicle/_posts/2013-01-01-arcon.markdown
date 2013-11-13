@@ -1,0 +1,25 @@
+---
+layout: base
+title: ARCON
+tags: [1]
+---
+
+# <span class="small">Launch Vehicle:</span>  ARCON
+
+In 1955, the Atlantic Research Corp. (ARC) began to develop the Arcon sounding rocket under a contract from the Naval Research Laboratory and the U.S. Navy's Bureau of Ordnance. At that time, the Arcon was to be a replacement for the widely used Deacon rocket. The Arcon used a new slow-burning propellant developed by ARC, which enabled it to reach much higher altitudes than fast-burning rockets of comparable size, because less energy was wasted to overcome drag in the lower atmosphere. To provide sufficient initial acceleration to attain stable flying speed, the Arcon was assisted by a small high-thrust booster rocket.
+
+## Launches Over Time:
+
+{% include launchchart.html %}
+
+--------------------------------------------------------------------------------
+
+## Table:
+
+{: .table .table-hover}
+ Designator | Launch Date | Launch Site | Result | Apogee \[**km**\] 
+ ---------- | ----------- | ----------- | ------ | ----------------- 
+ 2.06 GT | 1959-08-07T00:00:00 | [Wallops Flight Facility](../wallops-flight-facility) | Success | 104.0 
+
+
+Download raw data: [{{ page.id | remove_first:'/'}}.json](../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json)

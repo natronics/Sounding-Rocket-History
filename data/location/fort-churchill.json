@@ -1,1 +1,1 @@
-{"launches": [{"designation": "1.03 GP", "result": "Success", "vehicle": "Aerobee 100", "date": "1960-09-15T18:09:00", "apogee": 75.6, "location": "Fort Churchill"}]}
+{"launches": [{"designation": "1.03 GP", "result": "Success", "vehicle": "Aerobee 100", "date": "1960-09-15T18:09:00", "apogee": 75.6, "location": "Fort Churchill"}, {"designation": "3.10 UI", "result": "Failure", "vehicle": "Nike ASP", "date": "1960-03-16T00:00:00", "apogee": null, "location": "Fort Churchill"}]}
