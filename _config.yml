@@ -1,2 +1,2 @@
-exclude: [README.md,rawdata,build_site.py,Makefile]
+exclude: [README.md,build_site.py,Makefile,database,alembic.ini,requirements.txt,LICENSE,config.py,config.pyc,editor.py,editor.pyc]
 permalink: /:title/

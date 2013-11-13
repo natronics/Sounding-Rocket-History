@@ -1,0 +1,26 @@
+---
+layout: base
+title: Aerobee 100
+tags: [2]
+---
+
+# <span class="small">Launch Vehicle:</span>  Aerobee 100
+
+American sounding rocket. Two stage vehicle consisting of 1 x Aerobee Booster + 1 x Aerobee 100
+
+## Launches Over Time:
+
+{% include launchchart.html %}
+
+--------------------------------------------------------------------------------
+
+## Table:
+
+{: .table .table-hover}
+ Designator | Launch Date | Launch Site | Result | Apogee \[**km**\] 
+ ---------- | ----------- | ----------- | ------ | ----------------- 
+ 1.03 GP | 1960-09-15T18:09:00 | [Fort Churchill](../fort-churchill) | Success | 75.6 
+ 1.14 NA | 1962-11-20T00:00:00 | [White Sands Missile Range](../white-sands-missile-range) | Failure | None 
+
+
+Download raw data: [{{ page.id | remove_first:'/'}}.json](../data/{{ page.categories }}/{{ page.id | remove_first:'/'}}.json)
